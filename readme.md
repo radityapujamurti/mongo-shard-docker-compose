@@ -17,6 +17,8 @@ Heavily inspired by [https://github.com/jfollenfant/mongodb-sharding-docker-comp
 * (TODO): DB data persistence using docker data volumes
 
 ### First Run (initial setup)
+**Edit the image to be used on .env file if necessary**
+
 **Start all of the containers** (daemonized)
 
 ```

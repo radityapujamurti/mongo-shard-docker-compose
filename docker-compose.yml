@@ -3,56 +3,56 @@ services:
 
   ## Config Servers
   config01:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongod --port 27017 --dbpath /data/db --configsvr --replSet configserver --noprealloc --smallfiles --oplogSize 16
     volumes:
       - ./scripts:/scripts
   config02:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongod --port 27017 --dbpath /data/db --configsvr --replSet configserver --noprealloc --smallfiles --oplogSize 16
     volumes:
       - ./scripts:/scripts
   config03:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongod --port 27017 --dbpath /data/db --configsvr --replSet configserver --noprealloc --smallfiles --oplogSize 16
     volumes:
       - ./scripts:/scripts
 
   ## Shards
   shard01a:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongod --port 27018 --shardsvr --replSet shard01 --noprealloc --smallfiles --oplogSize 16
     volumes:
       - ./scripts:/scripts
   shard01b:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongod --port 27018 --shardsvr --replSet shard01 --noprealloc --smallfiles --oplogSize 16
     volumes:
       - ./scripts:/scripts
   shard02a:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongod --port 27019 --shardsvr --replSet shard02 --noprealloc --smallfiles --oplogSize 16
     volumes:
       - ./scripts:/scripts
   shard02b:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongod --port 27019 --shardsvr --replSet shard02 --noprealloc --smallfiles --oplogSize 16
     volumes:
       - ./scripts:/scripts
   shard03a:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongod --port 27020 --shardsvr --replSet shard03 --noprealloc --smallfiles --oplogSize 16
     volumes:
       - ./scripts:/scripts
   shard03b:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongod --port 27020 --shardsvr --replSet shard03 --noprealloc --smallfiles --oplogSize 16
     volumes:
       - ./scripts:/scripts
 
   ## Router
   router:
-    image: percona/percona-server-mongodb:3.4
+    image: ${IMAGE}
     command: mongos --port 27017 --configdb configserver/config01:27017,config02:27017,config03:27017
     ports:
       - "27017:27017"
